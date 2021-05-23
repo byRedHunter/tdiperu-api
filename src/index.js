@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const cors = require('cors')
+const morgan = require('morgan')
 
 const conectionDB = require('./db')
 
@@ -12,14 +13,13 @@ const app = express()
 conectionDB()
 
 // middleware
-app.use(express.json())
+app.use(express.json({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
+app.use(morgan('dev'))
 
 // rutas
-app.get('/', (req, res) => {
-	res.status(200).send('Comenzamos api')
-})
+app.use('/api/practicing', require('./routes/practicing'))
 
 // lanzamos el servidor
 app.listen(process.env.PORT, () => {
