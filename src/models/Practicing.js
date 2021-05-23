@@ -26,6 +26,11 @@ const PracticingSchema = mongoose.Schema({
 		required: true,
 		trim: true,
 	},
+	cloudinaryId: {
+		type: String,
+		required: true,
+		trim: true,
+	},
 	registered: {
 		type: Date,
 		default: Date.now(),
